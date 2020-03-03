@@ -1,4 +1,3 @@
-// 미완성
 #include <iostream>
 using namespace std;
 
@@ -26,21 +25,10 @@ int main(void){
      for(int i = N; i >= 1;i--){
             dp2[i] = 1;
             for(int j = N; j >= i;j--){
-                if(a[i] < a[j] && dp2[i] < dp2[j]+1)
+                if(a[i] > a[j] && dp2[i] < dp2[j]+1)
                     dp2[i] = dp2[j]+1;
             }
         }
-
-    // for(int i = 1; i <= N; i++){
-    //     cout<<dp1[i]<<"\t";
-    // }
-
-    // cout<<"\n";
-    //  for(int i = 1; i <= N; i++){
-    //     cout<<dp2[i]<<"\t";
-    // }
-
-    // cout<<"\n";
 
      for(int i = 0;i <= N; i++){
             if(ans <dp1[i]+dp2[i]-1) ans = dp1[i]+dp2[i]-1;

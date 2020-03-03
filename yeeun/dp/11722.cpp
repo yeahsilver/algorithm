@@ -3,7 +3,7 @@ using namespace std;
 
 int main(void){
     int N;
-    int min = 0;
+    int max = 0;
     int a[1001] = {};
     int dp[1001] = {};
 
@@ -21,9 +21,15 @@ int main(void){
             }
         }
 
+
+    for(int i = 1; i<=N; i++){
+        cout<<dp[i]<<"\t";
+    }
+    cout<<"\n";
+    
     for(int i = 1; i <= N; i++){
-        if(dp[i] > min) min = dp[i];
+        if(dp[i] > max) max = dp[i];
     }
 
-    cout<<min;
+    cout<<max;
 }
