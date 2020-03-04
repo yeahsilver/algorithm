@@ -3,9 +3,6 @@ using namespace std;
 
 int main(void){
     int N,num;
-
-
-
     cin>>num;
     
     for (int k = 0; k<num; k++){
