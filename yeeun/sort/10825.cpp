@@ -33,4 +33,8 @@ int main(void){
     for(int i = 0; i< N; i++){
         cout<<v[i].first.first<<"\n";
     } 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6d79912af21ea0707c8b270ca261cecec55a0f21
