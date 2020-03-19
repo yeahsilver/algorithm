@@ -5,6 +5,11 @@
         "vector": "cpp",
         "iostream": "cpp",
         "utility": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "string": "cpp",
+        "iterator": "cpp",
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "list": "cpp"
     }
 }
