@@ -1,4 +1,4 @@
-// 시간초과
+//시간초과
 #include <iostream>
 using namespace std;
 
