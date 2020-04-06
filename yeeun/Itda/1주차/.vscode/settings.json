@@ -2,6 +2,10 @@
     "files.associations": {
         "iostream": "cpp",
         "algorithm": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "queue": "cpp",
+        "vector": "cpp",
+        "functional": "cpp",
+        "__locale": "cpp"
     }
 }

@@ -16,7 +16,7 @@ int main(void){
                 low = mid+1LL;
             } else {
                 high = mid-1LL;
-                mid--;
+                mid--; // 마지막 계단은 무조건 건너야 하기 때문에 mid에서 1을 빼줌.
             }
         }
         cout<<mid<<'\n';
