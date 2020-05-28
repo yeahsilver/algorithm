@@ -19,7 +19,7 @@ void DFS(int x, int y){
     for(int i = 0; i <4; i ++){
         int nX = x + mX[i];
         int nY = y + mY[i];
-        if(nX < 0 || nY <0 || nX >=N || nY >= M){
+        if(nX < 0 || nY <0 || nX >=N || nY >= M){ // 범위를 넘어가는 경우
             continue;
         }
             
