@@ -2,7 +2,7 @@
 #include <algorithm>
 using namespace std;
 
-const int MAX =  1000000001;
+#define MAX 1000000001
 
 int N;
 int op[4] = {0,};
@@ -10,11 +10,12 @@ int a[12] = {0,};
 int maxResult = -MAX, minResult = MAX;
 
 void DFS(int plus, int minus, int mult, int div, int count, int sum){
-    if(count == N){
+    if(count == N){ // n개를 모두 처리하였으면
         minResult = min(minResult, sum);
         maxResult = max(maxResult ,sum);
     }
 
+    // 기호가 맞으면 그 기호의 값을 1씩 빼주어야함.
     if(plus > 0){
         DFS(plus-1, minus, mult, div, count + 1, sum + a[count]);
     }
