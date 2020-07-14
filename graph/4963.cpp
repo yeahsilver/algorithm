@@ -1,4 +1,3 @@
-// 미완성
 #include <iostream>
 #include <cstring>
 #include <vector>
@@ -11,14 +10,14 @@ using namespace std;
 bool map[MAX][MAX];
 bool visited[MAX][MAX];
 
-int mX[8] = { 0 -1 -1 -1, 0, 1, 1, 1 };
+int mX[8] = { 0, -1, -1, -1, 0, 1, 1, 1 };
 int mY[8] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 
 void BFS(int height, int width){
-    queue<pair<bool, bool> > need_visit;
+    queue<pair<int, int> > need_visit;
 
-    visited[height][width] = true;
     need_visit.push(make_pair(height, width));
+    visited[height][width] = true;
 
     while(!need_visit.empty()){
         int x = need_visit.front().first;
@@ -32,8 +31,8 @@ void BFS(int height, int width){
 
             if(nx >= 0 && ny >= 0 && nx < MAX && ny < MAX){
                 if(map[nx][ny] && !visited[nx][ny]){
-                    visited[nx][ny] = true;
                     need_visit.push(make_pair(nx, ny));
+                    visited[nx][ny] = true;
                 }
             }
         }
