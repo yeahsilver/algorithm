@@ -64,6 +64,7 @@ int find_connect_factor(int n, vector<int>* graph){
 }
 
 int main(void){
+	// 입출력 시간 단축 메소드
 	cin.tie(NULL);
 	cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
