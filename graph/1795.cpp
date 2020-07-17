@@ -1,3 +1,4 @@
+// 미완성
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -7,17 +8,19 @@ using namespace std;
 #define MAX 50
 
 int chess[MAX][MAX];
-bool visited[MAX][MAX];
+int visited[MAX][MAX];
+int cnt_visited[MAX][MAX];
 
 int cX[8] = {-2, -2, -1, 1, 2, 2, 1, -1};
 int cY[8] = {-1, 1, 2, 2, 1, -1, -2, -2};
 
-int BFS(int width, int height){
+int BFS(int width, int height, int num){
     int cnt = 0;
-    queue<pair<int, int> > need_visit;
+    queue<pair<int, int>, pair<int, int> > need_visit;
 
     need_visit.push(make_pair(width, height));
-    visited[width][height] = true;
+    visited[width][height] = 1;
+    cnt_visited[width][height]++;
 
     while(!need_visit.empty()){
         int x = need_visit.front().first;
@@ -31,9 +34,10 @@ int BFS(int width, int height){
             if(nX>=0 && nY >= 0 && nX < MAX && nY < MAX){
                 if(chess[nX][nY] && !visited[nX][nY]){
                     need_visit.push(make_pair(nX, nY));
-                    visited[nX][nY] = true;
+                    cnt_visited[nX][nY]++;
                 }
             }
+
             cnt++;
         }
     }
@@ -46,6 +50,7 @@ int main(void){
     ios_base::sync_with_stdio(false);
 
     int width, height;
+    int cnt = 0;
     int min_num = __INT_MAX__;
 
     cin >>width>>height;
@@ -65,7 +70,10 @@ int main(void){
 
     for(int i = 0; i < width; i++){
         for(int j = 0; j < height; j++){
-            BFS(i, j);
+            if(chess[i][j] > 0 && chess[i][j] < 10){
+                cnt++;
+                BFS(i, j, chess[i][j]);
+            }
 
         }
     }
