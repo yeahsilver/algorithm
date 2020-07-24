@@ -9,15 +9,6 @@ int adjacent[MAX][MAX];
 int visited[MAX];
 queue<int> q;
 
-void dfs(int idx){
-    visited[idx] = 1;
-    cout<<idx<<" ";
-    for(int i = 1; i <= N; i++){
-        if(adjacent[idx][i] && !visited[i])
-            visited[i] = 1;
-            dfs(i);
-    }
-}
 
 void dfs(int idx)
 {
