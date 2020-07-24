@@ -11,21 +11,21 @@ bool visited[MAX] = {false, };
 vector<int> relation[MAX];
 
 
-void DFS(int idx, int depth){
-    visited[idx] = true;
+void DFS(int index, int depth){
+    visited[index] = true;
 
     if(depth == 4){
         cout << 1 << '\n';
         exit(0);
     }
 
-    for(int i = 0; i < relation[idx].size(); i++){
-        if(!visited[relation[idx][i]]){
-            DFS(relation[idx][i], depth + 1);
+    for(int i = 0; i < relation[index].size(); i++){
+        if(!visited[relation[index][i]]){
+            DFS(relation[index][i], depth + 1);
         }
     }
 
-    visited[idx] = false;
+    visited[index] = false;
 }
 
 int main(void){
