@@ -1,56 +1,47 @@
 #include <iostream>
-#include <stack>
-#include <algorithm>
+#include <list>
+#include <string>
 
 using namespace std;
 
-char Reverse(stack<char> stack){
-    int size = stack.size();
-    int cnt = 0;
-
-    char* arr = new char[size];
-    
-    while(!stack.empty()){
-        char value = stack.top();
-        arr[cnt] = value;
-        cnt++;
-    }
-
-    return arr[cnt - 1];
-}
-
 int main(void){
-    int test_case;
-    int cursor = 0;
+    int t;
 
-    cin >> test_case;
+    cin >> t;
 
-    for(int i = 0; i < test_case; i++){
-        stack<char> left;
-        stack<char> right;
-        
-        do{
-            char input;
-            cin >> input;
+    while(t--){
+        string str;
+        list<char> ans;
 
-            if(input == '<'){
-                char value;
-                if(!left.empty()){
-                    value = left.top();
-                    left.pop();
-                    right.push(value);
+        cin >> str;
+
+        list<char>::iterator it = ans.end();
+
+        for(int i = 0; i < str.length(); i++){
+            if(str[i] == '<'){
+                if(it == ans.begin()){
+                    continue;
                 }
-            } else if(input == '>'){
-                
+                it--;
+            } else if(str[i] == '>' ){
+                if(it == ans.end()) {
+                    continue;
+                }
+                it++;
+            } else if(str[i] == '-'){
+                if(it == ans.begin()) {
+                    continue;
+                }
+                it = ans.erase(--it);
+            } else {
+                ans.insert(it, str[i]);
             }
         }
-        while(getc(stdin)== ' ');
+
+        for(list<char>::iterator iter = ans.begin(); iter != ans.end(); iter++){
+            cout << *iter;
+        }
+        cout << '\n';
+        ans.clear();
     }
-
-    
-
-
-
-    
-    
 }
