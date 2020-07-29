@@ -4,7 +4,7 @@
 - [입출력](./입출력)
 </br>
 
-- [Dynamic Programming](./dynmaic_programming)
+- [Dynamic Programming](./dp)
 </br>
 
 - [그래프 알고리즘](./graph)
