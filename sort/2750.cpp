@@ -1,24 +1,25 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <algorithm>
 
 using namespace std;
 
 int main(void){
-    string str;
+    int num;
     vector<int> vector_sorted;
 
-    cin >> str;
+    cin >> num;
 
-    for(int i = 0; i < str.length(); i++){
-        int input= str[i] - '0';
+    for(int i = 0; i < num; i++){
+        int input;
+        cin >> input;
+
         vector_sorted.push_back(input);
     }
-
+    
     sort(vector_sorted.begin(), vector_sorted.end());
 
-    for(int i = str.length()-1; i >= 0; i—){
-        cout<<vector_sorted[i];
+    for(int i= 0; i < num; i++){
+        cout<<vector_sorted[i]<<'\n';
     }
 }
