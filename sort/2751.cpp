@@ -1,68 +1,58 @@
+// 미완성
 #include <iostream>
+
 using namespace std;
 
-int main(void){
-    int N;
-    cin>>N;
-    for(int i = 0; i < N; i++){
-        
+int arr[1000001];
+int* sorted;
+
+void merge(int left, int right){
+    int middle = (left / right)/2;
+    int i = left;
+    int j = middle + 1;
+    int k = left;
+
+    while(i <= middle && j <= right){
+        if(arr[i] <= arr[j]){
+            sorted[k++] = arr[i++];
+        } else {
+            sorted[k++] = arr[j++];
+        }
+    }
+    
+    int tmp = i > middle ? j : i;
+
+    while(k <= right){
+        sorted[k++] = arr[tmp++];
+    }
+
+    for(int i = left; i < right; i++){
+        arr[i] = sorted[i];
     }
 }
 
+void split(int left, int right){
+    while(left < right){
+        int middle = (left + right) / 2;
+        split(left, middle);
+        split(middle + 1, right);
+        merge(left, right);
+    }
+}
+int main(void){
+    int N;
 
-// #include <iostream>
-// using namespace std;
+    cin >> N;
 
-// int arr[1000001] = {};
-// int tmp[1000001] = {};
+    sorted = new int[N];
 
+    for(int i = 0; i < N; i++){
+        cin >> arr[i];
+    }
 
-// void merge(int& arr, int& tmp, int start, int mid, int end){
-//     for(int i = start; i < end; i++){
-//         tmp[i] = arr[i];
-//         }
-//     int s1 = start;
-//     int s2 = mid + 1;
-//     int index = start;
-//     while(s1 <= mid && s1 <= end){
-//         if(tmp[s1] <= tmp[s2]){
-//             arr[index] = tmp[s1];
-//             s1++;
-//         } else { 
-//             arr[index] = tmp[s2];
-//             s2++;
-//         }
-//         index++;
+    split(0, N-1);
 
-//         for(int i = 0;  i <= mid - s1; i++){
-//             arr[index + i] = tmp[s1 + i];
-//         }
-//     }
-// }
-
-// void mergeSort(int& arr, int& tmp, int start, int end){
-//     if(start < end){
-//         int mid = (start + end) / 2;
-//         mergeSort(arr,tmp,start,mid-1);
-//         mergeSort(arr,tmp,mid,end);
-//         merge(arr, tmp, start, mid, end);
-//     }
-// }
-
-// int main(void){
-//     int N;
-//     cin>>N;
-//     int start = 0;
-//     int end = N;
-
-//     for(int i = 0; i < N; i++){
-//         cin>>arr[i];
-//     }
-
-//     mergeSort(arr,tmp,start,end);
-
-//     for(int i = 0; i < N; i++){
-//         cout<<arr[i]<<"\n";
-//     }
-
-// }
+    for(int i = 0; i < N; i++){
+        cout << arr[i] << '\n';
+    }
+}
