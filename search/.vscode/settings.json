@@ -4,6 +4,11 @@
         "string": "cpp",
         "istream": "cpp",
         "iosfwd": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "algorithm": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp",
+        "string_view": "cpp",
+        "tuple": "cpp"
     }
 }
