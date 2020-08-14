@@ -9,6 +9,10 @@
         "__locale": "cpp",
         "__string": "cpp",
         "string_view": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "utility": "cpp",
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "queue": "cpp"
     }
 }
