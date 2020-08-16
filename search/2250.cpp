@@ -35,14 +35,13 @@ void inorder(Node* node, int depth){
     if(node->right){
         inorder(node->right, depth+1);
     }
-
 }
 
 int main(void){
     int N, root;
     cin >> N;
 
-    Node* tree = (Node*) malloc(sizeof(Node) * N);
+    Node* tree = (Node*) malloc(sizeof(Node) * (N+1));
 
     for(int i = 1; i <= N; i++){
         minArr[i] = __INT_MAX__;
