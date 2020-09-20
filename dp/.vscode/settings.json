@@ -4,6 +4,11 @@
         "algorithm": "cpp",
         "ios": "cpp",
         "string": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp",
+        "filesystem": "cpp",
+        "string_view": "cpp",
+        "*.tcc": "cpp"
     }
 }
