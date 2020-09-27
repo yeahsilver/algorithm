@@ -4,4 +4,5 @@
 - [2798번 블랙잭](https://blog.naver.com/0_0yeggy/222095913303)
 - [1874번 스택수열](https://blog.naver.com/0_0yeggy/222096780696)
 - [5379번 키로거](https://blog.naver.com/0_0yeggy/222099758532)
+- [1427번 소트인사이드](https://blog.naver.com/0_0yeggy/222101209622)
 
