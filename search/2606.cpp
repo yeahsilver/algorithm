@@ -6,7 +6,7 @@ using namespace std;
 
 int cnt = 0;
 
-void DFS(vector<int>* graph, int start, bool* visited){
+void BFS(vector<int>* graph, int start, bool* visited){
 	queue<int> need_visit;
 	need_visit.push(start);
 	visited[start] = true;
@@ -42,7 +42,7 @@ int main(void){
 		graph[to].push_back(from);
 	}
 	
-	DFS(graph, 1, visited);
+	BFS(graph, 1, visited);
 	
 	cout << cnt << '\n';
 }
