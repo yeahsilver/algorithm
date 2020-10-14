@@ -27,8 +27,6 @@ void inorder(Node* node, int depth){
     }
     node->column = level++;
 
-    //cout <<"node->value: "<< node->value << "\tnode->column: "<< node->column <<"\t depth: "<< depth<<'\n';
-    
     minArr[node->depth] = min(node->column, minArr[node->depth]);
     maxArr[node->depth] = max(node->column, maxArr[node->depth]);
 
@@ -78,11 +76,6 @@ int main(void){
     }
 
     inorder(&tree[root], 1);
-
-    // for(int i = 0; i < totalDepth; i++){
-    //     cout << "minArr["<< i << "]: " << minArr[i]<< '\t';
-    //     cout << "maxArr["<< i << "]: " << maxArr[i]<< '\n';
-    // }
 
     int maxDepth = maxArr[1] - maxArr[1] + 1;
     int maxLevel = 1;
