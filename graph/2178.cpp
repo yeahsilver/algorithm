@@ -35,8 +35,6 @@ void BFS(int x, int y){
 }
 
 int main(void){
-    cin.tie(NULL), cout.tie(NULL);
-    ios_base::sync_with_stdio(false);
 
     cin >> N >> M;
 
