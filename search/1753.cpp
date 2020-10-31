@@ -14,12 +14,11 @@ vector<P> graph[MAX];
 vector<int> dijkstra(int start){
     vector<int> dist(V+1, INF);
     priority_queue<P> need_visit;
-    need_visit.push(make_pair(start, dist[start]=0));
+    need_visit.push(make_pair(dist[start]=0, start));
 
     while(!need_visit.empty()){
-        int now = need_visit.top().first;
-        int distance = need_visit.top().second;
-
+        int distance = need_visit.top().first;
+        int now = need_visit.top().second;
         need_visit.pop();
 
         if(dist[now] < distance){
@@ -27,12 +26,11 @@ vector<int> dijkstra(int start){
         }
 
         for(int i = 0; i < graph[now].size(); i++){
-            int next = graph[now][i].first;
-            int cost = graph[now][i].second + distance;
+            int cost = graph[now][i].first + distance;
+            int next = graph[now][i].second;
 
             if(dist[next] > cost){
-                dist[next] = cost;
-                need_visit.push(make_pair(next, cost));
+                need_visit.push(make_pair(dist[next] = cost, next));
             }
         }
     }
@@ -51,14 +49,14 @@ int main(void){
     for(int i = 0; i < E; i++){
         int from, to, value;
         cin >> from >> to >> value;
-        graph[from].push_back(make_pair(to, value));
+        graph[from].push_back(make_pair(value, to));
     }
 
     vector<int> result = dijkstra(startVertex);
 
     for(int i = 1; i <= V; i++){
         if(result[i] == INF){
-            cout << "INF\n";
+            cout << "INF" <<'\n';
         } else {
             cout << result[i] << '\n';
         }
