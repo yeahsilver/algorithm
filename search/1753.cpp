@@ -13,7 +13,7 @@ vector<P> graph[MAX];
 
 vector<int> dijkstra(int start){
     vector<int> dist(V+1, INF);
-    priority_queue<P> need_visit;
+    priority_queue<P, vector<P>,  greater<P> > need_visit;
     need_visit.push(make_pair(dist[start]=0, start));
 
     while(!need_visit.empty()){
