@@ -1,22 +1,25 @@
-// 미완성
 #include <iostream>
+#include <algorithm>
+#define MAX 1000002
 using namespace std;
 
 int main(void){
-    long long N,n;
-    long long max = 0;
-    long long a[1000000001] = {};
+    int N;
+    int cnt = 1;
+    long long array[MAX];
 
-    cin>> N;
-    cin>> a[1];
-    for(int i = 2; i<=N; i++){
-        cin>>a[i];
-        if(a[i] < n){
-            
-            max++;
-        }
-        else {
-            auto iter = lower_bound(n+1, n+max, n);
+    cin >> N;
+    cin >> array[cnt];
+
+    for(int i = 2; i <= N; i++){
+        int num;
+        cin >> num;
+        if(num> array[cnt]){
+            array[++cnt] = num;
+        } else {
+            auto iter = lower_bound(array+1, array+cnt, num);
+            *iter = num;
         }
     }
+    cout << cnt << '\n';
 }
