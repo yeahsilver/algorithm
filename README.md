@@ -3,6 +3,10 @@
 ## 📝 목차
 - [입출력](./입출력)
 </br>
+ 
+- [탐욕 알고리즘](./greedy)
+
+</br>
 
 - [Dynamic Programming](./dp)
 </br>
