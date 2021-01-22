@@ -43,13 +43,6 @@ int main(void){
             }   
         }
 
-        // for(int i = 1; i <= M; i++){
-        //     for(int j = 0; j < matching[i].size(); j++){
-        //         cout << i << ": "<<  matching[i][j] << '\t';
-        //     }  
-        //     cout << '\n';
-        // }
-
         int cnt = 0;
         
         for(int i = 1 ; i <= N; i++) {
