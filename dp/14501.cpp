@@ -10,23 +10,21 @@ int P[MAX];
 int T[MAX];
 int dp[MAX];
 
-void find_max_cost()
+int find_max_cost()
 {
     for (int i = N; i > 0; i--)
     {
-        if (i + T[i] > N + 1) // 일을 할 수 없게되면
+        if (i + T[i] > N + 1)
         {
-            dp[i] = dp[i + 1]; // 전날의 임금과 동일해야함.
+            dp[i] = dp[i + 1];
         }
-        else // 일을 할 수 있다면?
+        else
         {
-            // 댜음날의 임금
-            dp[i] = max(dp[i + 1], dp[i + T[i]] + P[i]); // 다음 날의 임금이 더 큰지를 비교
-            //arr[i].second + dp[next_day]: 일을 하게되면 얻을 수 있는 이익.
-            // dp[i+1]: 일을 하지 않을 때의 이익
+
+            dp[i] = max(dp[i + 1], dp[i + T[i]] + P[i]);
         }
     }
-    cout << dp[1] << '\n';
+    return dp[1];
 }
 
 int main(void)
@@ -41,5 +39,5 @@ int main(void)
         cin >> T[i] >> P[i];
     }
 
-    find_max_cost();
+    cout << find_max_cost() << '\n';
 }
