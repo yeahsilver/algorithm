@@ -49,7 +49,7 @@ void BFS() {
                 continue;
             }
 
-            for(int k = 0; k < 4; k++) {
+            for(int .k = 0; k < 4; k++) {
                 int nx = i + dx[k];
                 int ny = i + dy[k];
 
