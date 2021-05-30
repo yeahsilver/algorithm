@@ -23,26 +23,23 @@ int dx[4] = {-1, 0, 1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 int BFS(int x, int y) {
-    priority_queue<pair<int, int> > need_visit;
-    bool visited[MAX][MAX] = {false, };
+    queue<pair<pair<int, int>, pair<int, int> > > need_visit;
+    bool visited[MAX][MAX][64] = {false, };
 
-    vector<char> keys;
-
-    need_visit.push(make_pair(x, y));
-    visited[x][y] = true;
-
-    int count = 0;
+    need_visit.push(make_pair(make_pair(x, y), make_pair(0, 0)));
+    visited[x][y][0] = true;
 
     while(!need_visit.empty()) {
 
-        int cx = need_visit.top().first;
-        int cy = need_visit.top().second;
+        int cx = need_visit.front().first.first;
+        int cy = need_visit.front().first.second;
+
+        int count = need_visit.front().second.first;
+        int key = need_visit.front().second.second;
 
         need_visit.pop();
 
-        bool isCheck = false;
-
-        if(maze[nx][ny] == 1) {
+        if(maze[cx][cy] == '1') {
             return count;
         }
 
@@ -50,29 +47,29 @@ int BFS(int x, int y) {
             int nx = cx + dx[i];
             int ny = cy + dy[i];
 
-            if(nx < 0 || ny < 0 || nx >= N || ny >= M ) {
-                continue;
-            }
-
-            if(maze[nx][ny] == '#' || maze[nx][ny]) {
+            if(nx < 0 || ny < 0 || nx >= N || ny >= M || maze[nx][ny] == '#' || visited[nx][ny][key]) {
                 continue;
             }
             
-            if (maze[nx][ny] == '.' || maze[nx][ny] == '1' || maze[nx][ny] == '0' || maze[nx][ny] == '1') {
-                need_visit.push(make_pair(nx, ny));
-                count++;
+            if (maze[nx][ny] == '.' || maze[nx][ny] == '1' || maze[nx][ny] == '0') {
+                visited[nx][ny][key] = true;
+                need_visit.push(make_pair(make_pair(nx, ny), make_pair(count+1, key)));
 
             } else if(maze[nx][ny] >= 'a' && maze[nx][ny] <= 'f') {
-                keys.push_back(maze[nx][ny]);
-                need_visit.push(make_pair(nx, ny));
-                count++;
+                int check = key | (1 << (maze[nx][ny]-97));
+
+                if(!visited[nx][ny][check]) {
+                    visited[nx][ny][key] = true;
+                    visited[nx][ny][check] = true;
+                    need_visit.push(make_pair(make_pair(nx, ny), make_pair(count+1, check)));
+                }
+                
 
             } else if(maze[nx][ny] >= 'A' && maze[nx][ny] <= 'F') {
-                for (char key: keys) {
-                    if(key == maze[nx][ny]-32) {
-                        need_visit.push(make_pair(nx, ny));
-                        count++;
-                    }
+
+                if(key & (1 << (maze[nx][y]-65))) {
+                    visited[nx][ny][key] = true;
+                    need_visit.push(make_pair(make_pair(nx, ny), make_pair(count+1, key)));
                 }
             } 
         }
