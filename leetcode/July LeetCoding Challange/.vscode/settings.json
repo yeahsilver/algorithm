@@ -5,6 +5,7 @@
         "array": "cpp",
         "string_view": "cpp",
         "unordered_map": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "iosfwd": "cpp"
     }
 }

@@ -24,7 +24,7 @@ int main(void) {
             i++;
         }
     }
-
+    
     if(v.size() < cnt) {
         cout << v.size() << '\n';
     } else {
