@@ -15,11 +15,6 @@ int main(void) {
         leaks.push_back(value);
     }
 
-    if(L == 1) {
-        cout << leaks.size() << '\n';
-        return 0;
-    }
-
     sort(leaks.begin(), leaks.end());
 
     L--;
@@ -33,11 +28,9 @@ int main(void) {
     bool isFinished = false;
 
     while(1) {
-
         int tape = start + L;
         int count = 0;
     
-
         // 탈출 조건 : 인덱스가 마지막 값을 가리킬 때 
         if(j >= leaks.size()-1) {
             if(!isFinished) {
