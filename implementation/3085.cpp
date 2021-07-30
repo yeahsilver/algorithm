@@ -13,16 +13,6 @@ int dy[4] = {0, 1, 0, -1};
 
 int maxCount = 0;
 
-void printArray(vector<char>* board) {
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < n; j++) {
-            cout << board[i][j] << '\t';
-        }
-        cout << '\n';
-    }
-    cout << '\n';
-}
-
 void swap(int cx, int cy, int nx, int ny, vector<char>* board) {
     char temp = board[cx][cy];
     board[cx][cy] = board[nx][ny];
@@ -32,65 +22,47 @@ void swap(int cx, int cy, int nx, int ny, vector<char>* board) {
 void countRowCandies(vector<char>* board) {
     for(int i = 0; i < n; i++) {
         char value = board[i][0];
-        int count = 1;
-        for(int j = 1; j < n; j++) {
+        int count = 0;
+
+        for(int j = 0; j < n; j++) {
             if(value == board[i][j]) {
                 count++;
             } else {
                 if(count > maxCount) {
                     maxCount = count;
-                    value = board[i][j];
+                    
                 }
 
+                value = board[i][j];
                 count = 1;
             }
         }
-
         if(count > maxCount) {
             maxCount = count;
-
-            cout << "row\n";
-            cout << "count: " << count << '\n';
-            for(int j = 0; j < n; j++) {
-                cout << board[i][j] << '\t';
-            }
-
-            cout << '\n';
         }
-
-        //cout << count << '\n';
     }
 }
 
 void countColumnCandies(vector<char>* board) {
     for(int i = 0; i < n; i++) {
         char value = board[0][i];
-        int count = 1;
-        for(int j = 1; j < n; j++) {
+        int count = 0;
+        for(int j = 0; j < n; j++) {
             if(value == board[j][i]) {
                 count++;
             } else {
                 if(count > maxCount) {
-                    maxCount = count;
-                    value = board[j][i];
+                    maxCount = count;  
                 }
 
+                value = board[j][i];
                 count = 1;
             }
         }
 
         if(count > maxCount) {
             maxCount = count;
-            cout << "column\n";
-            cout << "count: " << count << '\n';
-            for(int j = 0; j < n; j++) {
-                cout << board[j][i] << '\t';
-            }
-
-            cout << '\n';
         }
-
-        // cout << count << '\n';
     }
 }
 
@@ -107,26 +79,21 @@ int main(void) {
         }
     }
 
-    countRowCandies(board);
-    countColumnCandies(board);
-    
-
     for(int cx = 0; cx < n; cx++) {
         for(int cy = 0; cy < n; cy++) {
             
             for(int k = 0; k < 4; k++) {
                 int nx = cx+dx[k];
                 int ny = cy+dy[k];
-
-                // cout << cx << '\t' << cy << "\n\n";
-                // printArray(board);
-                // cout << '\n';
-
+                
                 if(nx < 0 || ny < 0 || nx > n-1 || ny > n-1) {
                     continue;
                 }
 
                 swap(cx, cy, nx, ny, board);
+
+                int rowCount = 0;
+                int columnCount = 0;
                 
                 countRowCandies(board);
                 countColumnCandies(board);
