@@ -6,6 +6,9 @@
         "string_view": "cpp",
         "unordered_map": "cpp",
         "algorithm": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "__tree": "cpp",
+        "bitset": "cpp",
+        "set": "cpp"
     }
 }
