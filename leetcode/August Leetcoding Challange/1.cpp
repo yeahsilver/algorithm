@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <algorithm>
+#include <cstring>
 
 using namespace std;
 
@@ -8,59 +10,64 @@ using namespace std;
 
 class Solution {
 public:
-    int largestIsland(vector<vector<int>>& grid) {
-        bool isAllOne = true;
+    int visited[MAX][MAX];
+    int count, visitCount = 0;
+
+    int largestIsland(vector<vector<int> >& grid) {
+        int answer = 0;
 
         int n = grid.size();
         int m = grid[0].size();
 
-        int count = 0;
+        memset(visited, 0, sizeof(visited));
 
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
-                if(grid[i][j] == 1) continue;
+        for(int cx = 0; cx < n; cx++) {
+            for(int cy = 0; cy < m; cy++) {
 
-                isAllOne = false;
+                if(grid[cx][cy] == 1) {
+                    continue;
+                }
 
-                grid[i][j] = 1;
-                count = BFS(i, j, grid);
-                grid[i][j] = 0;
+                grid[cx][cy] = 1;
+
+                count = 0;
+                visitCount++;
+                dfs(cx, cy, grid);
                 
+                answer = max(answer, count);
+
+                grid[cx][cy] = 0;
             }
         }
+
+        return answer == 0 ? n*m : answer;
     }
 
-    int connection(int x, int y, vector<vector<int> >& grid) {
-        int n = grid.size();
-        int m = grid[0].size();
-
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
-                
-            }
-        }
-    }
-
-    int BFS(int x, int y, vector<vector<int> >& grid) {
-        int count = 0;
+    void dfs(int x, int y, vector<vector<int> > &grid) {
         int dx[4] = {-1, 0, 1, 0};
         int dy[4] = {0, 1, 0, -1};
 
-        queue<pair<int, int> > need_visit;
-        bool visited[MAX][MAX] = {false, };
+        int n = grid.size();
+        int m = grid[0].size();
 
-        need_visit.push(make_pair(x, y));
-        visited[x][y] = true;
+        if(visited[x][y] == visitCount) {
+            return;
+        }
 
+        visited[x][y] = visitCount;
         count++;
 
-        while(!need_visit.empty()) {
-            int cx = need_visit.front().first;
-            int cy = need_visit.front().second;
+        for(int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
 
-            need_visit.pop();
+            if(nx < 0 || ny < 0|| nx > n-1 || ny > n-1) {
+                continue;
+            }
 
-
+            if(visited[nx][ny] < visitCount && grid[nx][ny]) {
+                dfs(nx, ny, grid);
+            }
         }
     }
 };
@@ -68,21 +75,21 @@ public:
 int main(void) {
     Solution solution;
 
-    // vector<int> v1;
-    // v1.push_back(1);
-    // v1.push_back(0);
-
-    // vector<int> v2;
-    // v2.push_back(0);
-    // v2.push_back(1);
-
     vector<int> v1;
     v1.push_back(1);
-    v1.push_back(1);
+    v1.push_back(0);
 
     vector<int> v2;
-    v2.push_back(1);
     v2.push_back(0);
+    v2.push_back(1);
+
+    // vector<int> v1;
+    // v1.push_back(1);
+    // v1.push_back(1);
+
+    // vector<int> v2;
+    // v2.push_back(1);
+    // v2.push_back(1);
 
     // vector<int> v1;
     // v1.push_back(1);
