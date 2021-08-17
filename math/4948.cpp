@@ -38,4 +38,4 @@ int main(void) {
         cout << count << '\n';
 
     }
-}
+} 
