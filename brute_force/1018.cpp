@@ -1,110 +1,21 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
 #define MAX 51
+vector<bool> whiteBlack[MAX];
+vector<bool> blackWhite[MAX];
 
-struct Count {
-    int whiteBlackCount;
-    int blackWhiteCount;
-};
+int countWB(int x, int y, vector<string> chess) {
+    int count = 0;
 
-int countMinimum(int M, int N, vector<bool>* v) {
-    int minValue = __INT_MAX__;
-
-    // 1. 세로로
-    int start = 0;
-    int end = 7;
-
-    cout << "세로\n";
-
-    while(end < M) {
-        int count = 0;
-
-        for(int i = start; i < end; i++) {
-            for(int j = 0; j < 8; j++) {
-                if(v[i][j] == false) {
-                    count++;
-                }
-            }
-        }
-
-        cout << start << '\t' << end << '\t' << count << '\n';
-
-        if(minValue > count) {
-            minValue = count;
-        }
-
-        start++;
-        end++;
-    }
-
-    start = 0;
-    end = 7;
-
-    // 2. 가로로
-    cout << "가로\n";
-    while(end < N) {
-        int count = 0;
-
-        for(int i = 0; i < 8; i++) {
-            for(int j = start; j < end; j++) {
-                if(v[i][j] == false) {
-                    count++;
-                }
-            }
-        }
-
-        cout << start << '\t' << end << '\t' << count << '\n';
-
-        if(minValue > count) {
-            minValue = count;
-        }
-        
-        start++;
-        end++;
-    }
-
-    return minValue;
-}
-
-Count countChess(int M, int N, vector<string> chess, vector<bool>* whiteBlack, vector<bool>* blackWhite) {
-    Count count;
-    count.blackWhiteCount = 0;
-    count.whiteBlackCount = 0;
-
-    for(int i = 0; i < M; i++) {
-        for(int j = 0; j < N; j++) {
-            if(i%2==0) {
-                if((j%2==0 && chess[i][j]=='W') || (j%2 == 1 && chess[i][j] == 'B')) {
-                    whiteBlack[i].push_back(true);
-
-                    blackWhite[i].push_back(false);
-                    count.blackWhiteCount++;
-
-                } else {
-                    blackWhite[i].push_back(true);
-
-                    whiteBlack[i].push_back(false);
-                    count.whiteBlackCount++;
-                    
-                }
-            } else {
-                if((j%2==1 && chess[i][j]=='W') || (j%2 == 0 && chess[i][j] == 'B')){
-                    whiteBlack[i].push_back(true);
-
-                    blackWhite[i].push_back(false);
-                    count.blackWhiteCount++;
-
-                } else {
-                     blackWhite[i].push_back(true);
-                    
-                    whiteBlack[i].push_back(false);
-                    count.whiteBlackCount++;
-                }
+    for(int i = x; i < x+8; i++) {
+        for(int j = y; j < y+8; j++) {
+            if(whiteBlack[i][j] == false) {
+                count++;
             }
         }
     }
@@ -112,42 +23,73 @@ Count countChess(int M, int N, vector<string> chess, vector<bool>* whiteBlack, v
     return count;
 }
 
-int main(void) {
-    int M, N;
-    cin >> M >> N;
+int countBW(int x, int y, vector<string> chess) {
+    int count = 0;
 
+    for(int i = x; i < x+8; i++) {
+        for(int j = y; j < y+8; j++) {
+            if(blackWhite[i][j] == false) {
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
+
+void countChess(int N, int M, vector<string> chess) {
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < M; j++) {
+            if(i%2==0) {
+                if((j%2==0 && chess[i][j]=='W') || (j%2 == 1 && chess[i][j] == 'B')) {
+                    whiteBlack[i].push_back(true);
+
+                    blackWhite[i].push_back(false);
+                } else {
+                    blackWhite[i].push_back(true);
+
+                    whiteBlack[i].push_back(false);
+                }
+            } else {
+                if((j%2==1 && chess[i][j]=='W') || (j%2 == 0 && chess[i][j] == 'B')){
+                    whiteBlack[i].push_back(true);
+
+                    blackWhite[i].push_back(false);
+
+                } else {
+                     blackWhite[i].push_back(true);
+                    
+                    whiteBlack[i].push_back(false);
+                }
+            }
+        }
+    }
+}
+
+
+
+int main(void) {
+    int N, M;
+    cin >> N >> M;
+    
     vector<string> chess;
 
-    for(int i = 0; i < M; i++) {
+    for(int i = 0; i < N; i++) {
         string s;
         cin >> s;
+
         chess.push_back(s);
-    }
+    }   
 
-    vector<bool> whiteBlack[MAX];
-    vector<bool> blackWhite[MAX];
+    countChess(N, M, chess);
 
-    Count count = countChess(M, N, chess, whiteBlack, blackWhite);
-    
-    bool isBlackFirst = false;
+    int minValue = __INT_MAX__;
 
-    if(count.blackWhiteCount < count.whiteBlackCount) {
-        isBlackFirst = true;
-    } else {
-        isBlackFirst = false;
-    }
-
-    if(M == 8 && N == 8) {
-        if(isBlackFirst) {
-            cout << count.blackWhiteCount << '\n';
-        } else {
-            cout << count.whiteBlackCount << '\n';
+    for(int i = 0; i+7 < N; i++) {
+        for(int j = 0; j+7 < M; j++) {
+            minValue = min(minValue, min(countBW(i ,j, chess), countWB(i, j, chess)));
         }
-
-        return 0;
     }
-    
-    int minValue = min(countMinimum(M, N, blackWhite), countMinimum(M, N, whiteBlack));
-    
+
     cout << minValue << '\n';
 }
