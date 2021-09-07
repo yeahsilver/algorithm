@@ -4,25 +4,26 @@
 using namespace std;
 
 int main(void) {
-    int num;
-    cin >> num;
+    int n;
+    cin >> n;
 
     int count = 0;
-    int expiredNum = 665;
-    string s;
+    int num = 665;
 
     while(1) {
-        s = to_string(expiredNum);
+        if(n == count) {
+            cout << num << '\n';
+            break;
+        }
+
+        num++;
+
+        string s = to_string(num);
 
         if(s.find("666") != -1) {
             count++;
         }
 
-        if(count == num) {
-            cout << expiredNum << '\n';
-            break;
-        }
-
-        expiredNum++;
+       
     }
 }
