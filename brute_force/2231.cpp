@@ -1,15 +1,14 @@
 #include <iostream>
 #include <string>
-#include <vector>
+
 using namespace std;
 
 bool isSuccess(int i, int n) {
+    int sum = i;
     string s = to_string(i);
 
-    int sum = i;
-
     for(int i = 0; i < s.size(); i++) {
-        sum+= (s[i]-'0');
+        sum += s[i]-'0';
     }
 
     if(sum == n) {
