@@ -17,7 +17,7 @@ int main(void) {
     string s = "";
     bool isReversed = true;
 
-    for(int i = 0; i <= str.size(); i++) {
+    for(int i = 0; i < str.size(); i++) {
         char value = str[i];
 
         if(value == '<') {
