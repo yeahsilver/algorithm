@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -35,4 +36,4 @@ int main(void) {
     cin >> str >> number;
 
     cout << convert(str, number) << '\n';
-}
+} 

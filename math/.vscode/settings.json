@@ -8,6 +8,8 @@
         "iosfwd": "cpp",
         "memory": "cpp",
         "utility": "cpp",
-        "__locale": "cpp"
+        "__locale": "cpp",
+        "cmath": "cpp",
+        "bitset": "cpp"
     }
 }
