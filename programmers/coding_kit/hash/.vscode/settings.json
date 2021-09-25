@@ -4,6 +4,10 @@
         "unordered_map": "cpp",
         "__hash_table": "cpp",
         "utility": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "iosfwd": "cpp",
+        "__tree": "cpp",
+        "algorithm": "cpp",
+        "map": "cpp"
     }
 }
