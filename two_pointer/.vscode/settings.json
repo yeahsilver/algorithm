@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "functional": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "queue": "cpp"
     }
 }
