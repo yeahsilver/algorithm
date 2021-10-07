@@ -12,6 +12,7 @@ int main(void) {
 
     for(int i = 0; i < N; i++) {
         int value;
+        
         cin >> value;
         numbers.push_back(value);
     }
