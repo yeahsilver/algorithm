@@ -66,8 +66,6 @@ void countChess(int N, int M, vector<string> chess) {
     }
 }
 
-
-
 int main(void) {
     int N, M;
     cin >> N >> M;
