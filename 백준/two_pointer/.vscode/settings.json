@@ -2,6 +2,8 @@
     "files.associations": {
         "functional": "cpp",
         "utility": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "vector": "cpp",
+        "iostream": "cpp"
     }
 }

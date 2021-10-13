@@ -6,24 +6,29 @@ using namespace std;
 
 int solution(vector<int> scoville, int k) {
     int answer = 0;
-    priority_queue<int, vector<int>, greater<int> > q(scoville.begin(), scoville.end());
-    
-    while(1) {  
-        if(q.top() >= k || q.size() < 2) {
+    priority_queue<int, vector<int>, greater<int> > q;
+
+    for(auto& i: scoville) {
+        q.push(i);
+    }
+
+    while(1) {
+        int min1 = q.top();
+        q.pop();
+
+        if(min1 >= k) {
+            break;
+
+        } else if(q.empty()) {
+            answer = -1;
             break;
         }
 
-        int first = q.top();
+        int min2 = q.top();
         q.pop();
-        int second = q.top();
-        q.pop();
-        
-        q.push(first + (second*2));
-        answer++;
-    }
 
-    if(q.top() < k) {
-        return -1;
+        q.push(min1 + (min2*2));
+        answer++;
     }
 
     return answer;
