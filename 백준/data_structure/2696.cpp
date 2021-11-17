@@ -1,38 +1,24 @@
 #include <iostream>
+#include <vector>
 #include <queue>
 
 using namespace std;
 
-#define MAX 1001
-
 int main(void) {
-    int test_case;
-    cin >> test_case;
+    int testCase;
+    cin >> testCase;
 
-    while(test_case) {
+    while(testCase--) {
         int N;
         cin >> N;
 
-        int mid;
+        priority_queue<int> maxHeap;
+        priority_queue<int, vector<int>, greater<int> > minHeap;
+
         vector<int> answer;
-        priority_queue<int> max_pq;
-        priority_queue<int, vector<int>, greater<int> > min_pq;
+        
+        for(int i = 0; i < N; i++) {
 
-        cout << (N+1)/2 << '\n';
-
-        for(int i = 1; i <= N; i++) {
-            int value;
-            cin >> value;
-
-            int min_size = min_pq.size();
-            int max_size = max_pq.size();
-
-            if(min_size == max_size) {
-                max_pq.push(value);
-
-            } else {
-                min_pq.push(value);
-            }
         }
     }
 }
