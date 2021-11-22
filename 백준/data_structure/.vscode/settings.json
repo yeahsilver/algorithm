@@ -65,6 +65,8 @@
         "vector": "cpp",
         "__tree": "cpp",
         "map": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "__bits": "cpp",
+        "set": "cpp"
     }
 }
