@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <algorithm>
 
 using namespace std;
 
@@ -9,36 +10,42 @@ int main(void) {
     cin >> n;
 
     vector<int> A;
-    vector<int> copyA;
-    
+    vector<pair<int, int> > copyA;
+
+
     for(int i = 0; i < n; i++) {
         int value;
         cin >> value;
 
         A.push_back(value);
-        copyA.push_back(value);
+        copyA.push_back(make_pair(value, i));
     }
 
     sort(copyA.begin(), copyA.end());
 
     vector<pair<int, int> > B;
+    
+    for(int i = 0; i < A.size(); i++) {
+        int first = copyA[i].first;
+        int second = copyA[i].second;
 
-    for(int i = 0; i < copyA.size(); i++) {
-        int value = copyA[i];
-        B.push_back(make_pair(value, i));
+        B.push_back(make_pair(first, second));
     }
 
-    vector<int> P(n+1, 0);
-
-    for(int i = 0; i < B.size(); i++) {
-        int value = B[i].first;
-        int index = B[i].second;
-
-        P[index] = value;
-    }
+    vector<pair<pair<int, int> , int> > answer;
 
     for(int i = 0; i < A.size(); i++) {
-        int value = A[i];
-        
+        int index = i;
+        int value = B[i].first;
+        int pIndex = B[i].second;
+
+        answer.push_back(make_pair(make_pair(pIndex, value), index));
+    }
+
+    sort(answer.begin(), answer.end());
+
+    for(int i = 0; i < answer.size(); i++) {
+        int index = answer[i].second;
+        cout << index << ' ';
     }
 }
